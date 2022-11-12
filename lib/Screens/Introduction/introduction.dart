@@ -13,7 +13,7 @@ class AppIntroductionScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        decoration: BoxDecoration(gradient: mainGradient(context)),
+        decoration: BoxDecoration(gradient: mainGradient()),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: Get.width*0.1,
@@ -34,8 +34,8 @@ class AppIntroductionScreen extends StatelessWidget {
               ),
               SizedBox(height: 40,),
               AppCircleButton(
-                  onTap: () => Get.offAllNamed("/home"),  // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomeScreen()))
-                  child: const Icon(Icons.arrow_forward),
+                  onTap: () => Get.offAndToNamed("/home"),  // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomeScreen()))
+                  child: const Icon(Icons.arrow_forward, size: 36,),
               )
             ],
           ),
