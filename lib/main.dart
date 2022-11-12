@@ -11,7 +11,12 @@ import 'package:project/firebase_options.dart';
 import 'package:get/get.dart';
 import 'package:project/routes/app_routes.dart';
 
-void main() async{
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider, PhoneAuthProvider;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:provider/provider.dart';
+
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   InitailBindings().dependencies();
