@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:project/Screens/question/questions_screen.dart';
+import 'package:project/controllers/auth_controller.dart';
 import 'package:project/firebase_ref/references.dart';
 import 'package:project/models/question_paper_model.dart';
 import 'package:project/services/firebase_storage_service.dart';
@@ -33,6 +35,20 @@ class QuestionPaperController extends GetxController {
       allPapers.assignAll(paperList);
     }catch(e){
       print(e);
+    }
+  }
+
+  void navigateToQuestions({required QuestionPaperModel paper, bool tryAgain = false}){
+    AuthController _authController = Get.find();
+    if(_authController.isLoggedIn()){
+      if(tryAgain){
+        Get.back();
+      }else{
+        Get.toNamed(QuestionsScreen.routeName, arguments: paper);
+      }
+    }else{
+      print('The title is ${paper.title}');
+      _authController.showLoginAlertDialog();
     }
   }
 }
