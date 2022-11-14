@@ -68,7 +68,11 @@ class QuestionCard extends GetView<QuestionPaperController> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 15),
                           child: Text(
-                              model.description
+                              model.description,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600
+                              ),
                           ),
                         ),
                         Row(
