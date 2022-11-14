@@ -1,8 +1,13 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:project/Screens/home/home_screen.dart';
+import 'package:project/Screens/question/result_screen.dart';
+import 'package:project/controllers/auth_controller.dart';
+import 'package:project/controllers/question_paper/question_paper_controller.dart';
 import 'package:project/firebase_ref/loading_status.dart';
 import 'package:project/models/question_paper_model.dart';
 import 'package:project/firebase_ref/references.dart';
@@ -64,7 +69,20 @@ class QuestionsController extends GetxController{
 
   void selectedAnswer(String? answer) {
     currentQuestion.value!.selectedAnswer = answer;
-    update(['answers_list']);
+    update(['answers_list', 'answer_review_last']);
+  }
+
+  String get completedTest{
+    final answered = allQuestions.where((element) => element.selectedAnswer!=null).toList().length;
+    return "$answered out of ${allQuestions.length} answered";
+  }
+
+  void jumpToQuestion(int index, {bool isGoBack=true}){
+    questionIndex.value = index;
+    currentQuestion.value = allQuestions[index];
+    if(isGoBack){
+      Get.back();
+    }
   }
 
   void nextQuestion(){
@@ -86,7 +104,7 @@ class QuestionsController extends GetxController{
   _startTimer(int seconds){
     const duration = Duration(seconds: 1);
     remainSeconds = seconds;
-    Timer.periodic(duration, (Timer timer) {
+    _timer = Timer.periodic(duration, (Timer timer) {
       if(remainSeconds == 0){
         timer.cancel();
       }else{
@@ -97,4 +115,19 @@ class QuestionsController extends GetxController{
       }
     });
   }
+
+  void complete(){
+    _timer!.cancel();
+    Get.offAndToNamed(ResultScreen.routeName);
+  }
+
+  void tryAgain(){
+    Get.find<QuestionPaperController>().navigateToQuestions(paper: questionPaperModel, tryAgain: true);
+  }
+  
+  void navigateToHome(){
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen.routeName, (route) => false);
+  }
+
 }
