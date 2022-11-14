@@ -2,7 +2,10 @@ import 'package:project/Screens/home/home_screen.dart';
 import 'package:project/Screens/login/login_page.dart';
 import 'package:project/Screens/login/login_screen.dart';
 import 'package:project/Screens/login/signup_page.dart';
+import 'package:project/Screens/question/answer_check_screen.dart';
 import 'package:project/Screens/question/questions_screen.dart';
+import 'package:project/Screens/question/result_screen.dart';
+import 'package:project/Screens/question/test_overview_screen.dart';
 import 'package:project/Screens/splash/splash_screen.dart';
 import 'package:project/controllers/question_paper/question_paper_controller.dart';
 import 'package:project/controllers/question_paper/questions_controller.dart';
@@ -23,8 +26,11 @@ class AppRoutes{
     GetPage(name: "/emailLogIn", page: () => LogInPage() ),
     GetPage(name: "/emailSignUp", page: () => SignUpPage() ),
     GetPage(name: "/questionsScreen", page: () => QuestionsScreen(), binding: BindingsBuilder(() {
-      Get.put(QuestionsController());
+      Get.put<QuestionsController>(QuestionsController());
     }) ),
     // GetPage(name: QuestionsScreen.routeName, page: () => QuestionsScreen() ),
+    GetPage(name: TestOverviewScreen.routeName, page: () => const TestOverviewScreen()),
+    GetPage(name: ResultScreen.routeName, page: () => const ResultScreen()),
+    GetPage(name: AnswerCheckScreen.routeName, page: () => const AnswerCheckScreen()),
   ];
 }
