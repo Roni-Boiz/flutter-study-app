@@ -35,6 +35,7 @@ class MainButton extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: child??Center(
                 child: Text(title, style: TextStyle(
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Get.isDarkMode?onSurfaceTextColor:Theme.of(context).primaryColor,
                   ),
