@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/Screens/question/test_overview_screen.dart';
 import 'package:project/configs/themes/app_colors.dart';
 import 'package:project/configs/themes/custom_text_styles.dart';
 import 'package:project/configs/themes/ui_parameters.dart';
@@ -53,7 +54,7 @@ class QuestionsScreen extends GetView<QuestionsController> {
                 if(controller.loadingStatus.value == LoadingStatus.completed)
                 Expanded(child: ContentArea(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 25),
                     child: Column(
                       children: [
                         Text(
@@ -112,7 +113,7 @@ class QuestionsScreen extends GetView<QuestionsController> {
                               visible: controller.loadingStatus.value == LoadingStatus.completed,
                               child: MainButton(
                               onTap: () {
-                                controller.isLastQuestion?Container():
+                                controller.isLastQuestion?Get.toNamed(TestOverviewScreen.routeName):
                                 controller.nextQuestion();
                               },
                               title: controller.isLastQuestion?'Completed':'Next',
