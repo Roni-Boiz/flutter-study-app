@@ -18,7 +18,9 @@ A new Flutter project.
 8. Certifying your project and get sha1 and sha256 key and add it to the firebase.
 (To do that you can run gradlew.bat file inside the android folder. Open terminal go to android folder `cd android` type `.\gradlew signingReport`)
 9. Add all the dependencises and dev_dependencies as mine in pubspec.yaml. Update the dependnecies by Pub get then Pub upgrade or using terminal `flutter pub get` then `flutter pub upgrade`.
-10. Finally you can run the project. If you encounter a problem follow below steps.
+10. Copy all the code in lib, assets directory to your project.
+11. Enable assets and fonts in pubspec.yaml.
+12. Finally you can run the project. If you encounter a problem follow below steps.
  
 ### Run the project
 
@@ -32,5 +34,5 @@ A new Flutter project.
 
 5. Finally you have to uncomment the lines 19-36 in main.dart and comment out lines 39-44. Then run the project. The application should start on on your emulator.
 
-*Keep in mind that all the testing is done in Android emulator and Google chrome browser.*
+*** *Keep in mind that all the testing is done in Android emulator and Google chrome browser.* ***
 
